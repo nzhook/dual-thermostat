@@ -1,6 +1,6 @@
 # Lovelace Dual Thermostat Card
 
-A custom Lovelace card based on the native thermostat card that allows to control dual thermostats that create separate Heat and Cool entities.
+A custom Lovelace card based on the native thermostat card that allows to control thermostats that have separate Heat and Cool entities
 
 Heat and Cool entities are updated depending on the active thermostat mode. The low point on the Auto mode controls the heat entity and the high point controls the cool entity allowing you to use a single card for both entities.
 
@@ -19,7 +19,7 @@ Heat and Cool entities are updated depending on the active thermostat mode. The 
 ## Available configuration options:
 
 * `entities` *array*
-  * Using entity objects:
+  * Using entity objects: (only supports a cool and heat entity)
 	 * `entity` *string*: The thermostat entity id **required**
     * `type` *string*: cool or heat **required**
   * Using string notation (Cooling entity first):
@@ -48,15 +48,16 @@ cards:
     max_slider: 80
 ```
 
-#### Using string (First provided entity will define to the cool entity)
+#### Using string (First provided entity will define to the state display entity, second will be cool)
 
 ```yaml
 cards:
   - type: custom:dual-thermostat
     name: Downstairs
     entities:
-      - climate.downstairs_cool
-      - climate.downstairs_heat
+      - climate.downstairs
+      - climate.downstairs_coolfrom
+      - climate.downstairs_heatto
     fan_control: true
     min_slider: 60
     max_slider: 80
