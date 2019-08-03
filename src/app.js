@@ -101,8 +101,13 @@ class DualThermostatCard extends LitElement {
     }
 
     if (Object.keys(output).length == 0) {
-      output['cool'] = entities[0];
-      output['heat'] = entities[1];
+      if(entities.length == 2) {
+         output['cool'] = entities[0];
+         output['heat'] = entities[1];
+      } else {     // if there are 3 or more entities use 2 and 3 as the cool and heat values only
+         output['cool'] = entities[1];
+         output['heat'] = entities[2];        
+      }
     }
 
     return output;
